@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    --color-wineRose: #D1827E;
+    --color-wineRoseLight: #E5BCBD;
+    --color-wineRedDark: #6D2E36;
+    --color-wineRed: #94464C;
+    --color-wineRedLight: #F2E6E6;
+    --color-wineWhiteDark: #BF8D14;
+    --color-wineWhite: #D6B04B;
+    --color-wineWhiteLight: #FCF6E3;
+    --color-bg: #F9F7F2;
+    --color-textDark: #3E2F2F;
+    --color-textLight: #FFFFFF;
+    --color-textGray: #6B6363;
+    --font-sans: 'Playfair', sans-serif;
+}
