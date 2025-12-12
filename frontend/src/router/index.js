@@ -1,14 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from '@/views/LoginPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue'
-import TastingList from '@/views/TastingList.vue'
-import Terms from '@/views/Footer/Terms.vue'
-import CookiesTerms from '@/views/Footer/CookiesTerms.vue'
-import Privacy from '@/views/Footer/Privacy.vue'
-import Newsletter from '@/views/Footer/Newsletter.vue'
 import Form from '@/views/Form.vue'
 import FormBasic from '../components/formComponents/BasicInfoComponent.vue'
 import VisualComponent from '../components/formComponents/VisualComponent.vue'
+import Footer from '@/views/Footer.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,11 +18,6 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterPage,
-    },
-    {
-      path: '/dashboard',
-      name: 'lista degustacji',
-      component: TastingList,
     },
     {
       path: '/form',
@@ -45,26 +36,10 @@ const router = createRouter({
       name: 'visualComponent',
       component: VisualComponent
     },
-
     {
-      path: '/terms',
-      name: 'terms',
-      component: Terms
-    },
-    {
-      path: '/cookies',
-      name: 'cookies',
-      component: CookiesTerms
-    },
-    {
-      path: '/privacy',
-      name: 'privacy',
-      component: Privacy
-    },
-    {
-      path: '/newsletter',
-      name: 'newsletter',
-      component: Newsletter
+      path: '/footer',
+      name: 'footer',
+      component: Footer
     }
   ],
 })
