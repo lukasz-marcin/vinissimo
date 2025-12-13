@@ -5,6 +5,9 @@ import Form from '@/views/Form.vue'
 import FormBasic from '../components/formComponents/BasicInfoComponent.vue'
 import VisualComponent from '../components/formComponents/VisualComponent.vue'
 import Footer from '@/views/Footer.vue'
+import Privacy from '@/components/footerComponents/Privacy.vue'
+import Terms from '@/components/footerComponents/Terms.vue'
+import CookiesTerms from '@/components/footerComponents/CookiesTerms.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +26,21 @@ const router = createRouter({
       path: '/form',
       name: 'form',
       component: Form
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: Privacy
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: Terms
+    },
+    {
+      path: '/cookies',
+      name: 'cookies',
+      component: CookiesTerms
     },
 
     // TEST ONLY!
