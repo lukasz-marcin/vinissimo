@@ -4,29 +4,75 @@
             class="container flex flex-col items-center space-y-10 py-14 px-5 md:px-10 bg-textLight shadow-xl max-w-xl rounded-lg">
             <p class="text-textDark text-4xl font-extrabold md:text-5xl">Rejestracja</p>
 
-            <form class="space-y-8 w-full" @submit.prevent="handleRegister" novalidate>
-
+            <form class="space-y-4 w-full" @submit.prevent="handleRegister" novalidate>
                 <div class="flex flex-col space-y-1">
-                    <label for="name" class="uppercase text-textDark text-xl md:text-2xl font-bold">Email</label>
-                    <input id="name"
-                        class="bg-textLight border-2 border-textGray/90 rounded-lg py-2 px-2 focus:outline-none focus:border-textDark duration-150"
-                        type="text" placeholder="Wprowadź email" required v-model="registerData.email"></input>
+                    <label for="email" class="uppercase text-textDark text-xl md:text-2xl font-bold">Email</label>
+                    <input id="email"
+                        class="bg-textLight border-2 rounded-lg py-2 px-2 focus:outline-none duration-150"
+                        :class="errors.email ? 'border-red-500 focus:border-red-500' : 'border-textGray/90 focus:border-textDark'"
+                        type="text" placeholder="Wprowadź email" v-model="registerData.email"
+                        @input="errors.email = ''">
+                    <div class="h-5 flex items-center">
+                        <span v-if="errors.email" class="text-red-500 text-sm font-medium">{{ errors.email }}</span>
+                    </div>
                 </div>
 
                 <div class="flex flex-col space-y-1">
-                    <label for="date" class="uppercase text-textDark text-xl md:text-2xl font-bold">Data urodzenia</label>
+                    <label for="name" class="uppercase text-textDark text-xl md:text-2xl font-bold">Imię</label>
+                    <input id="name"
+                        class="bg-textLight border-2 rounded-lg py-2 px-2 focus:outline-none duration-150"
+                        :class="errors.name ? 'border-red-500 focus:border-red-500' : 'border-textGray/90 focus:border-textDark'"
+                        type="text" placeholder="Wprowadź imię" v-model="registerData.name"
+                        @input="errors.name = ''">
+                    <div class="h-5 flex items-center">
+                        <span v-if="errors.name" class="text-red-500 text-sm font-medium">{{ errors.name }}</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-1">
+                    <label for="surname" class="uppercase text-textDark text-xl md:text-2xl font-bold">Nazwisko</label>
+                    <input id="surname"
+                        class="bg-textLight border-2 rounded-lg py-2 px-2 focus:outline-none duration-150"
+                        :class="errors.surname ? 'border-red-500 focus:border-red-500' : 'border-textGray/90 focus:border-textDark'"
+                        type="text" placeholder="Wprowadź nazwisko" v-model="registerData.surname"
+                        @input="errors.surname = ''">
+                    <div class="h-5 flex items-center">
+                        <span v-if="errors.surname" class="text-red-500 text-sm font-medium">{{ errors.surname }}</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-1">
+                    <label for="login" class="uppercase text-textDark text-xl md:text-2xl font-bold">Login</label>
+                    <input id="login"
+                        class="bg-textLight border-2 rounded-lg py-2 px-2 focus:outline-none duration-150"
+                        :class="errors.login ? 'border-red-500 focus:border-red-500' : 'border-textGray/90 focus:border-textDark'"
+                        type="text" placeholder="Wprowadź nazwę użytkownika" v-model="registerData.login"
+                        @input="errors.login = ''">
+                    <div class="h-5 flex items-center">
+                        <span v-if="errors.login" class="text-red-500 text-sm font-medium">{{ errors.login }}</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-1">
+                    <label for="date" class="uppercase text-textDark text-xl md:text-2xl font-bold">Data
+                        urodzenia</label>
                     <input id="date"
-                        class="bg-textLight border-2 border-textGray/90 rounded-lg py-2 px-2 focus:outline-none focus:border-textDark duration-150"
-                        type="date" required v-model="registerData.date"></input>
+                        class="bg-textLight border-2 rounded-lg py-2 px-2 focus:outline-none duration-150"
+                        :class="errors.date ? 'border-red-500 focus:border-red-500' : 'border-textGray/90 focus:border-textDark'"
+                        type="date" v-model="registerData.date" @input="errors.date = ''">
+                    <div class="min-h-5 flex items-center">
+                        <span v-if="errors.date" class="text-red-500 text-sm font-medium leading-tight">{{ errors.date }}</span>
+                    </div>
                 </div>
 
                 <div class="flex flex-col space-y-1">
                     <label for="password" class="uppercase text-textDark text-xl md:text-2xl font-bold">Hasło</label>
                     <div class="relative">
                         <input id="password"
-                            class="bg-textLight border-2 border-textGray/90 rounded-lg py-2 px-2 focus:outline-none focus:border-textDark duration-150 w-full"
-                            :type="showPassword ? 'text' : 'password'" placeholder="Wprowadź hasło" required
-                            v-model="registerData.password"></input>
+                            class="bg-textLight border-2 rounded-lg py-2 px-2 focus:outline-none duration-150 w-full"
+                            :class="errors.password ? 'border-red-500 focus:border-red-500' : 'border-textGray/90 focus:border-textDark'"
+                            :type="showPassword ? 'text' : 'password'" placeholder="Wprowadź hasło"
+                            v-model="registerData.password" @input="errors.password = ''">
                         <button type="button" @click="showPassword = !showPassword"
                             class="absolute inset-y-0 right-0 flex items-center pr-4 text-formPlaceholder hover:text-gray-700">
                             <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -43,6 +89,9 @@
                             </svg>
                         </button>
                     </div>
+                    <div class="min-h-5 flex items-center">
+                         <span v-if="errors.password" class="text-red-500 text-sm font-medium leading-tight">{{ errors.password }}</span>
+                    </div>
                 </div>
 
                 <div class="flex flex-col space-y-1">
@@ -50,12 +99,13 @@
                         class="uppercase text-textDark text-xl md:text-2xl font-bold">Powtórz hasło</label>
                     <div class="relative">
                         <input id="passwordConfirmation"
-                            class="bg-textLight border-2 border-textGray/90 rounded-lg py-2 px-2 focus:outline-none focus:border-textDark duration-150 w-full"
-                            :type="showPasswordConfirmation ? 'text' : 'password'" placeholder="Powtórz hasło" required
-                            v-model="passwordConfirmation"></input>
+                            class="bg-textLight border-2 rounded-lg py-2 px-2 focus:outline-none duration-150 w-full"
+                            :class="errors.passwordConfirmation ? 'border-red-500 focus:border-red-500' : 'border-textGray/90 focus:border-textDark'"
+                            :type="showPasswordConfirmation ? 'text' : 'password'" placeholder="Powtórz hasło"
+                            v-model="passwordConfirmation" @input="errors.passwordConfirmation = ''">
                         <button type="button" @click="showPasswordConfirmation = !showPasswordConfirmation"
                             class="absolute inset-y-0 right-0 flex items-center pr-4 text-formPlaceholder hover:text-gray-700">
-                            <svg v-if="!showPasswordConfirmation" xmlns="http://www.w3.org/2000/svg" fill="none"
+                             <svg v-if="!showPasswordConfirmation" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 10.224 7.66 6.5 12 6.5s8.577 3.724 9.964 5.183c.375.375.375.983 0 1.358C20.577 14.776 16.34 18.5 12 18.5s-8.577-3.724-9.964-5.183a1.012 1.012 0 010-.639z" />
@@ -69,12 +119,14 @@
                             </svg>
                         </button>
                     </div>
+                    <div class="h-5 flex items-center">
+                         <span v-if="errors.passwordConfirmation" class="text-red-500 text-sm font-medium">{{ errors.passwordConfirmation }}</span>
+                    </div>
                 </div>
 
-                <div class="border text-center py-3 rounded relative transition-colors duration-200"
-                    :class="errorMessage ? 'bg-red-100 border-red-400 text-red-700' : 'invisible border-transparent'">
-                    <span v-if="errorMessage">{{ errorMessage }}</span>
-                    <span v-else>&nbsp;</span>
+                <div class="border text-center py-3 rounded relative transition-all duration-200 min-h-5 flex items-center justify-center"
+                    :class="generalError ? 'bg-red-100 border-red-400 text-red-700' : 'border-transparent'">
+                    <span>{{ generalError || '' }}</span>
                 </div>
 
                 <div class="flex flex-col space-y-3 pt-5 md:flex-row md:space-y-0 md:space-x-6">
@@ -97,10 +149,8 @@
                 </div>
 
             </form>
-
             <div class="flex flex-col space-y-2 items-center justify-center w-full pt-8">
                 <p class="text-3xl md:text-4xl text-textDark font-bold">Masz już konto?</p>
-
                 <a href="/login" class="group w-full">
                     <div class="bg-wineRose py-3 w-full rounded-lg group-hover:bg-wineRoseLight duration-200">
                         <p class="font-bold text-xl text-center text-textLight group-hover:text-textDark duration-200">
@@ -120,11 +170,25 @@ const router = useRouter();
 
 const registerData = reactive({
     email: '',
+    name: '',
+    surname: '',
+    login: '',
     password: '',
     date: ''
 });
 
-const errorMessage = ref('');
+const errors = reactive({
+    email: '',
+    name: '',
+    surname: '',
+    login: '',
+    password: '',
+    passwordConfirmation: '',
+    date: ''
+});
+
+const generalError = ref('');
+
 const isLoading = ref(false);
 const showPassword = ref(false);
 const showPasswordConfirmation = ref(false);
@@ -133,54 +197,84 @@ const passwordConfirmation = ref('');
 const API_URL = 'https://localhost:7028/api/Auth/register';
 
 const validateForm = () => {
+    Object.keys(errors).forEach(key => errors[key] = '');
+    generalError.value = '';
+
+    let isValid = true;
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameSurnameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[\W_]).{8,}$/;
 
     if (!registerData.email) {
-        errorMessage.value = 'Podaj adres email.';
-        return false;
+        errors.email = 'Podaj adres email.';
+        isValid = false;
+    } else if (!emailRegex.test(registerData.email)) {
+        errors.email = 'Nieprawidłowy format adresu email.';
+        isValid = false;
+    }
+
+    if (!registerData.name) {
+        errors.name = 'Podaj imię.';
+        isValid = false;
+    } else if (!nameSurnameRegex.test(registerData.name)) {
+        errors.name = 'Imię nie może zawierać cyfr ani znaków specjalnych.';
+        isValid = false;
+    }
+
+    if (!registerData.surname) {
+        errors.surname = 'Podaj nazwisko.';
+        isValid = false;
+    } else if (!nameSurnameRegex.test(registerData.surname)) {
+        errors.surname = 'Nazwisko nie może zawierać cyfr ani znaków specjalnych.';
+        isValid = false;
+    }
+
+    if (!registerData.login) {
+        errors.login = 'Podaj login.';
+        isValid = false;
     }
 
     if (!registerData.password) {
-        errorMessage.value = 'Podaj hasło.';
-        return false;
+        errors.password = 'Podaj hasło.';
+        isValid = false;
+    } else if (!passwordRegex.test(registerData.password)) {
+        errors.password = 'Min. 8 znaków, jedna cyfra i jeden znak specjalny.';
+        isValid = false;
     }
 
-    if (passwordConfirmation.value != registerData.password) {
-        errorMessage.value = 'Podane hasła muszą być takie same.'
-        return false;
+    if (passwordConfirmation.value !== registerData.password) {
+        errors.passwordConfirmation = 'Podane hasła muszą być takie same.';
+        isValid = false;
     }
 
-    const today = new Date();
-    const birthDate = new Date(registerData.date);
-
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
+    if (!registerData.date) {
+        errors.date = 'Podaj datę urodzenia.';
+        isValid = false;
+    } else {
+        const today = new Date();
+        const birthDate = new Date(registerData.date);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        if (age < 18) {
+            errors.date = 'Rejestracja jest dostępna tylko dla osób pełnoletnich (18+).';
+            isValid = false;
+        }
     }
 
-    if (age < 18) {
-        errorMessage.value = 'Rejestracja jest dostępna tylko dla osób pełnoletnich (18+).';
-        return false;
-    }
-
-    if (!emailRegex.test(registerData.email)) {
-        errorMessage.value = 'Nieprawidłowy format adresu email.';
-        return false;
-    }
-
-    return true;
+    return isValid;
 };
 
 const handleRegister = async () => {
-    errorMessage.value = '';
-
     if (!validateForm()) {
         return;
     }
 
     isLoading.value = true;
+    generalError.value = '';
 
     try {
         const response = await fetch(API_URL, {
@@ -190,28 +284,28 @@ const handleRegister = async () => {
             },
             body: JSON.stringify({
                 email: registerData.email,
+                name: registerData.name,
+                surname: registerData.surname,
                 password: registerData.password,
-                birthDate: registerData.date
-                
+                birthDate: registerData.date,
+                login: registerData.login,
             })
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data);
+            throw new Error(data.message);
         }
 
         const { token, ...userProfile } = data;
-
         localStorage.setItem('userToken', token);
         localStorage.setItem('userData', JSON.stringify(userProfile));
-
         router.push('/login');
 
     } catch (error) {
         console.error(error);
-        errorMessage.value = typeof error.message === 'string'
+        generalError.value = typeof error.message === 'string'
             ? error.message
             : 'Wystąpił problem z połączeniem z serwerem.';
     } finally {
